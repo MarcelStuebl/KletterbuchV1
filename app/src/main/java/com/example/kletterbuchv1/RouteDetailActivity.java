@@ -1,21 +1,16 @@
 package com.example.kletterbuchv1;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,23 +24,26 @@ public class RouteDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_detail);
 
-        String routeJson = getIntent().getStringExtra("route");
-
         ImageView imageView = findViewById(R.id.routeImageView);
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        FloatingActionButton backFab = findViewById(R.id.backFab);
+
+        String routeJson = getIntent().getStringExtra("route");
 
         try {
             JSONObject route = new JSONObject(routeJson);
 
-            MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+            // Toolbar-Titel
             toolbar.setTitle(route.getString("name"));
 
-            // Bild laden (aus assets)
+            // Bild aus Assets laden
             String imageFileName = route.getString("image");
-            InputStream is = getAssets().open(imageFileName);
-            Bitmap bitmap = BitmapFactory.decodeStream(is);
-            imageView.setImageBitmap(bitmap);
+            try (InputStream is = getAssets().open(imageFileName)) {
+                Bitmap bitmap = BitmapFactory.decodeStream(is);
+                imageView.setImageBitmap(bitmap);
+            }
 
-            // Klick zum Vergrößern
+            // Bildklick → ZoomActivity starten
             imageView.setOnClickListener(v -> {
                 Intent intent = new Intent(RouteDetailActivity.this, ImageZoomActivity.class);
                 intent.putExtra("image", imageFileName);
@@ -56,11 +54,7 @@ public class RouteDetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        FloatingActionButton backFab = findViewById(R.id.backFab);
+        // Zurück-Button
         backFab.setOnClickListener(v -> finish());
-
     }
-
-
 }

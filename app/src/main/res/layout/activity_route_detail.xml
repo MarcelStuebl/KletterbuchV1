@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Top App Bar -->
+    <!-- App Bar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:title="Routenname"
         android:titleTextColor="@android:color/white" />
 
-    <!-- ScrollView mit Inhalt -->
+    <!-- Bild + Inhalt -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,8 +27,6 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <!-- Deine TextViews & ImageView -->
-
             <ImageView
                 android:id="@+id/routeImageView"
                 android:layout_width="match_parent"
@@ -37,21 +35,18 @@
                 android:scaleType="fitCenter"
                 android:layout_marginTop="16dp"
                 android:contentDescription="Bild der Route" />
-
         </LinearLayout>
     </ScrollView>
 
-    <!-- Floating Action Button rechts unten -->
+    <!-- Zurück-FAB -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/backFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:rotation="90"
+        android:layout_margin="16dp"
         android:contentDescription="Zurück"
         app:srcCompat="@android:drawable/arrow_down_float"
         android:tint="@android:color/white"
-        app:layout_anchorGravity="bottom|end"
         android:layout_gravity="bottom|end" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
