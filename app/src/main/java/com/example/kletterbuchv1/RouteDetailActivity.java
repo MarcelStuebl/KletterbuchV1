@@ -3,6 +3,7 @@ package com.example.kletterbuchv1;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,6 +71,10 @@ public class RouteDetailActivity extends AppCompatActivity {
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+
+
+        FloatingActionButton backFab = findViewById(R.id.backFab);
+        backFab.setOnClickListener(v -> finish());
 
 
     }

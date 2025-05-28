@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,5 +52,10 @@ public class RouteListActivity extends AppCompatActivity {
             intent.putExtra("route", selectedRoute.toString());
             startActivity(intent);
         });
+
+
+        FloatingActionButton backFab = findViewById(R.id.backFab);
+        backFab.setOnClickListener(v -> finish());
+
     }
 }

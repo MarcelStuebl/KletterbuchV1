@@ -8,14 +8,14 @@
           "difficulty": "D",
           "length": "800m",
           "description": "Klassische Nordgrat-Route mit ausgesetztem Grat.",
-          "image": "bild1.jpg"
+          "image": "images/bild1.jpg"
         },
         {
           "name": "Südwand",
           "difficulty": "C",
           "length": "600m",
           "description": "Beliebte Sportkletter-Route an der Südwand.",
-          "image": "suedwand.jpg"
+          "image": "images/bild1.jpg"
         }
       ]
     },
@@ -27,7 +27,7 @@
           "difficulty": "E",
           "length": "1800m",
           "description": "Berühmte Ostwand, sehr anspruchsvoll.",
-          "image": "ostwand.jpg"
+          "image": "images/bild1.jpg"
         }
       ]
     }
