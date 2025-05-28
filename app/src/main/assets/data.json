@@ -4,18 +4,56 @@
       "name": "Kampermauer",
       "routes": [
         {
-          "name": "Nordgrat",
-          "difficulty": "D",
-          "length": "800m",
-          "description": "Klassische Nordgrat-Route mit ausgesetztem Grat.",
-          "image": "img/4-5.jpg"
+          "name": "Übersicht 1",
+          "image": "img/uebersicht_0.jpg"
         },
         {
-          "name": "Südwand",
-          "difficulty": "C",
-          "length": "600m",
-          "description": "Beliebte Sportkletter-Route an der Südwand.",
-          "image": "img/5-6.jpg"
+          "name": "Übersicht 2",
+          "image": "img/uebersicht_1.jpg"
+        },
+        {
+          "name": "Schweizer Kas",
+          "image": "img/12-13.jpg"
+        },
+        {
+          "name": "Fledermaus",
+          "image": "img/14-15.jpg"
+        },
+        {
+          "name": "Zodiak",
+          "image": "img/16-17.jpg"
+        },
+        {
+          "name": "Malibu",
+          "image": "img/18-19.jpg"
+        },
+        {
+          "name": "Palatschinke",
+          "image": "img/20-21.jpg"
+        },
+        {
+          "name": "Hinkelstein",
+          "image": "img/22-23.jpg"
+        },
+        {
+          "name": "Ekstase",
+          "image": "img/24-25.jpg"
+        },
+        {
+          "name": "Superdiagonale",
+          "image": "img/26-27.jpg"
+        },
+        {
+          "name": "Vegetarierkante",
+          "image": "img/28-29.jpg"
+        },
+        {
+          "name": "Schmetterlingsplatte",
+          "image": "img/30-31.jpg"
+        },
+        {
+          "name": "Longlines",
+          "image": "img/long.jpg"
         }
       ]
     },
@@ -24,9 +62,6 @@
       "routes": [
         {
           "name": "Ostwand",
-          "difficulty": "E",
-          "length": "1800m",
-          "description": "Berühmte Ostwand, sehr anspruchsvoll.",
           "image": "images/bild1.jpg"
         }
       ]

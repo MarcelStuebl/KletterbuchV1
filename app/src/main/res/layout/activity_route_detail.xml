@@ -28,23 +28,6 @@
             android:padding="16dp">
 
             <!-- Deine TextViews & ImageView -->
-            <TextView
-                android:id="@+id/difficultyView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp" />
-
-            <TextView
-                android:id="@+id/lengthView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp" />
-
-            <TextView
-                android:id="@+id/descriptionView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp" />
 
             <ImageView
                 android:id="@+id/routeImageView"

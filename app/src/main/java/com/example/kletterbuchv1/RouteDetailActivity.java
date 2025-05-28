@@ -24,35 +24,17 @@ import java.io.InputStream;
 
 public class RouteDetailActivity extends AppCompatActivity {
 
-    TextView difficultyView, lengthView, descriptionView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_detail);
 
-        difficultyView = findViewById(R.id.difficultyView);
-        lengthView = findViewById(R.id.lengthView);
-        descriptionView = findViewById(R.id.descriptionView);
-
-
         String routeJson = getIntent().getStringExtra("route");
-        try {
-            JSONObject route = new JSONObject(routeJson);
-            difficultyView.setText("Schwierigkeit: " + route.getString("difficulty"));
-            lengthView.setText("Länge: " + route.getString("length"));
-            descriptionView.setText(route.getString("description"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         ImageView imageView = findViewById(R.id.routeImageView);
 
         try {
             JSONObject route = new JSONObject(routeJson);
-            difficultyView.setText("Schwierigkeit: " + route.getString("difficulty"));
-            lengthView.setText("Länge: " + route.getString("length"));
-            descriptionView.setText(route.getString("description"));
 
             MaterialToolbar toolbar = findViewById(R.id.topAppBar);
             toolbar.setTitle(route.getString("name"));
