@@ -43,6 +43,7 @@
         android:id="@+id/backFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:rotation="90"
         android:layout_margin="16dp"
         android:contentDescription="Zurück"
         app:srcCompat="@android:drawable/arrow_down_float"
