@@ -4,12 +4,8 @@
       "name": "Kampermauer",
       "routes": [
         {
-          "name": "Übersicht 1",
-          "image": "img/uebersicht_0.jpg"
-        },
-        {
-          "name": "Übersicht 2",
-          "image": "img/uebersicht_1.jpg"
+          "name": "Übersicht",
+          "image": "img/uebersicht.jpg"
         },
         {
           "name": "Schweizer Kas",
