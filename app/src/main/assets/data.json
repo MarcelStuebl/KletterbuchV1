@@ -1,21 +1,21 @@
 {
   "mountains": [
     {
-      "name": "Zugspitze",
+      "name": "Kampermauer",
       "routes": [
         {
           "name": "Nordgrat",
           "difficulty": "D",
           "length": "800m",
           "description": "Klassische Nordgrat-Route mit ausgesetztem Grat.",
-          "image": "images/bild1.jpg"
+          "image": "img/4-5.jpg"
         },
         {
           "name": "Südwand",
           "difficulty": "C",
           "length": "600m",
           "description": "Beliebte Sportkletter-Route an der Südwand.",
-          "image": "images/bild1.jpg"
+          "image": "img/5-6.jpg"
         }
       ]
     },
