@@ -12,8 +12,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,22 +24,21 @@ import java.io.InputStream;
 
 public class RouteDetailActivity extends AppCompatActivity {
 
-    TextView nameView, difficultyView, lengthView, descriptionView;
+    TextView difficultyView, lengthView, descriptionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_detail);
 
-        nameView = findViewById(R.id.nameView);
         difficultyView = findViewById(R.id.difficultyView);
         lengthView = findViewById(R.id.lengthView);
         descriptionView = findViewById(R.id.descriptionView);
 
+
         String routeJson = getIntent().getStringExtra("route");
         try {
             JSONObject route = new JSONObject(routeJson);
-            nameView.setText(route.getString("name"));
             difficultyView.setText("Schwierigkeit: " + route.getString("difficulty"));
             lengthView.setText("Länge: " + route.getString("length"));
             descriptionView.setText(route.getString("description"));
@@ -45,15 +46,16 @@ public class RouteDetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         ImageView imageView = findViewById(R.id.routeImageView);
 
         try {
             JSONObject route = new JSONObject(routeJson);
-            nameView.setText(route.getString("name"));
             difficultyView.setText("Schwierigkeit: " + route.getString("difficulty"));
             lengthView.setText("Länge: " + route.getString("length"));
             descriptionView.setText(route.getString("description"));
+
+            MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+            toolbar.setTitle(route.getString("name"));
 
             // Bild laden (aus assets)
             String imageFileName = route.getString("image");
@@ -75,7 +77,6 @@ public class RouteDetailActivity extends AppCompatActivity {
 
         FloatingActionButton backFab = findViewById(R.id.backFab);
         backFab.setOnClickListener(v -> finish());
-
 
     }
 

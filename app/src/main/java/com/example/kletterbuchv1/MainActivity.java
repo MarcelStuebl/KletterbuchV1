@@ -8,6 +8,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.appbar.MaterialToolbar;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("mountain", selectedMountain.toString());
             startActivity(intent);
         });
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Kletterrouten App");
+
     }
 
     private void loadMountains() {

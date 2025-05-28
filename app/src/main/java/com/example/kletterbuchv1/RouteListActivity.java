@@ -2,13 +2,12 @@ package com.example.kletterbuchv1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -31,14 +30,23 @@ public class RouteListActivity extends AppCompatActivity {
         routeListView = findViewById(R.id.routeListView);
 
         String mountainJson = getIntent().getStringExtra("mountain");
+
         try {
             JSONObject mountain = new JSONObject(mountainJson);
+            String mountainName = mountain.getString("name");
+
+            // Set toolbar title
+            MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+            toolbar.setTitle(mountainName);
+
+            // Parse and add routes
             JSONArray routesArray = mountain.getJSONArray("routes");
             for (int i = 0; i < routesArray.length(); i++) {
                 JSONObject route = routesArray.getJSONObject(i);
                 routeNames.add(route.getString("name"));
                 routeObjects.add(route);
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -53,9 +61,7 @@ public class RouteListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
         FloatingActionButton backFab = findViewById(R.id.backFab);
         backFab.setOnClickListener(v -> finish());
-
     }
 }
