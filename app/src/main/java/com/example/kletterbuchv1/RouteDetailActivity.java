@@ -1,12 +1,21 @@
 package com.example.kletterbuchv1;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class RouteDetailActivity extends AppCompatActivity {
 
@@ -32,5 +41,36 @@ public class RouteDetailActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+        ImageView imageView = findViewById(R.id.routeImageView);
+
+        try {
+            JSONObject route = new JSONObject(routeJson);
+            nameView.setText(route.getString("name"));
+            difficultyView.setText("Schwierigkeit: " + route.getString("difficulty"));
+            lengthView.setText("Länge: " + route.getString("length"));
+            descriptionView.setText(route.getString("description"));
+
+            // Bild laden (aus assets)
+            String imageFileName = route.getString("image");
+            InputStream is = getAssets().open(imageFileName);
+            Bitmap bitmap = BitmapFactory.decodeStream(is);
+            imageView.setImageBitmap(bitmap);
+
+            // Klick zum Vergrößern
+            imageView.setOnClickListener(v -> {
+                Intent intent = new Intent(RouteDetailActivity.this, ImageZoomActivity.class);
+                intent.putExtra("image", imageFileName);
+                startActivity(intent);
+            });
+
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
+
+
 }

@@ -22,6 +22,9 @@
             android:name="com.example.kletterbuchv1.RouteListActivity"
             android:exported="false" />
 
+        <activity android:name=".ImageZoomActivity" />
+
+
         <activity
             android:name="com.example.kletterbuchv1.MainActivity"
             android:exported="true">
