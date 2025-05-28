@@ -1,0 +1,35 @@
+{
+  "mountains": [
+    {
+      "name": "Zugspitze",
+      "routes": [
+        {
+          "name": "Nordgrat",
+          "difficulty": "D",
+          "length": "800m",
+          "description": "Klassische Nordgrat-Route mit ausgesetztem Grat.",
+          "image": "nordgrat.jpg"
+        },
+        {
+          "name": "Südwand",
+          "difficulty": "C",
+          "length": "600m",
+          "description": "Beliebte Sportkletter-Route an der Südwand.",
+          "image": "suedwand.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Watzmann",
+      "routes": [
+        {
+          "name": "Ostwand",
+          "difficulty": "E",
+          "length": "1800m",
+          "description": "Berühmte Ostwand, sehr anspruchsvoll.",
+          "image": "ostwand.jpg"
+        }
+      ]
+    }
+  ]
+}
