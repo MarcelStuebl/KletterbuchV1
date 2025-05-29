@@ -15,18 +15,18 @@
         tools:targetApi="31">
 
         <activity
-            android:name="com.example.kletterbuchv1.RouteDetailActivity"
+            android:name=".RouteDetailActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.example.kletterbuchv1.RouteListActivity"
+            android:name=".RouteListActivity"
             android:exported="false" />
 
         <activity android:name=".ImageZoomActivity" />
 
 
         <activity
-            android:name="com.example.kletterbuchv1.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

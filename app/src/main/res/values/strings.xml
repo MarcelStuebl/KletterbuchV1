@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Topos</string>
+    <string name="zoombares_bild">Zoombares Bild</string>
+    <string name="kletterapp">KletterApp</string>
+    <string name="zurueck">Zurück</string>
 </resources>
+
+

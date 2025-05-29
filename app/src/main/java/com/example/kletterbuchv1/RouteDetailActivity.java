@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,8 +52,12 @@ public class RouteDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
+        } catch (JSONException e) {
+            Log.e("RouteDetailActivity", "Fehler beim Parsen des JSON-Objekts", e);
+            Toast.makeText(this, "Fehler beim Laden der Route-Daten", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Log.e("RouteDetailActivity", "Fehler beim Laden des Bildes aus den Assets", e);
+            Toast.makeText(this, "Fehler beim Laden des Routenbildes", Toast.LENGTH_SHORT).show();
         }
 
         // Zurück-Button

@@ -1,12 +1,15 @@
 package com.example.kletterbuchv1;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +19,8 @@ import java.io.InputStream;
 public class ImageZoomActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private Matrix matrix = new Matrix();
-    private Matrix savedMatrix = new Matrix();
+    private final Matrix matrix = new Matrix();
+    private final Matrix savedMatrix = new Matrix();
 
     // States für Touchmodus
     private static final int NONE = 0;
@@ -29,10 +32,9 @@ public class ImageZoomActivity extends AppCompatActivity {
     private float startX = 0f, startY = 0f;
     private float oldDist = 1f;
 
-    private float[] matrixValues = new float[9];
-
     private Bitmap bitmap;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +44,22 @@ public class ImageZoomActivity extends AppCompatActivity {
 
         // Bild aus Assets laden
         String imageFileName = getIntent().getStringExtra("image");
-        try (InputStream is = getAssets().open(imageFileName)) {
-            bitmap = BitmapFactory.decodeStream(is);
-            imageView.setImageBitmap(bitmap);
+        try {
+            assert imageFileName != null;
+            try (InputStream is = getAssets().open(imageFileName)) {
+                bitmap = BitmapFactory.decodeStream(is);
+                imageView.setImageBitmap(bitmap);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("RouteDetailActivity", "Fehler beim Laden des Bildes aus den Assets", e);
+            Toast.makeText(this, "Fehler beim Laden des Routenbildes", Toast.LENGTH_SHORT).show();
         }
 
         imageView.setScaleType(ImageView.ScaleType.MATRIX);
         imageView.setImageMatrix(matrix);
 
         // Warten bis Layout fertig ist, um Bild an ImageView-Größe anzupassen
-        imageView.post(() -> {
-            fitImageToView();
-        });
+        imageView.post(this::fitImageToView);
 
         // Touch-Listener für Drag & Zoom
         imageView.setOnTouchListener((View v, MotionEvent event) -> {

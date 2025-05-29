@@ -2,9 +2,10 @@ package com.example.kletterbuchv1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.AdapterView;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,8 +15,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,23 +62,25 @@ public class MainActivity extends AppCompatActivity {
                 mountainObjects.add(mountain);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e("RouteDetailActivity", "Fehler beim Parsen des JSON-Objekts", e);
+            Toast.makeText(this, "Fehler beim Laden der Route-Daten", Toast.LENGTH_SHORT).show();
         }
     }
 
     private String loadJSONFromAsset() {
-        String json;
-        try {
-            InputStream is = getAssets().open("data.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
+        try (InputStream is = getAssets().open("data.json");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+
+            StringBuilder builder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+            return builder.toString();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Log.e("AssetLoader", "Fehler beim Lesen der JSON-Datei", ex);
             return null;
         }
-        return json;
     }
+
 }
