@@ -4,6 +4,8 @@
     <string name="kletterapp">KletterApp</string>
     <string name="zurueck">Zurück</string>
     <string name="mountain_image_desc">Bergfot</string>
+    <string name="sync_emoji">↻</string>
+    <string name="routenname">Routenname</string>
 </resources>
 
 

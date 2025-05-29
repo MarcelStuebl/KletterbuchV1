@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:title="@string/kletterapp"
-        android:titleTextColor="@android:color/white"
-        app:layout_scrollFlags="scroll|enterAlways" />
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:title="@string/kletterapp"
+            android:titleTextColor="@android:color/white"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+        <ListView
+            android:id="@+id/mountainListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/downloadButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Daten herunterladen"/>
+        android:layout_gravity="end"
+        android:backgroundTint="#00FFFFFF"
+        android:text="@string/sync_emoji"
+        android:textSize="42sp"
+        android:translationY="-12dp"
+        android:translationX="10dp"/>
 
-    <ListView
-        android:id="@+id/mountainListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

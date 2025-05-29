@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:title="Routenname"
+        android:title="@string/routenname"
         android:titleTextColor="@android:color/white" />
 
     <!-- Bild + Inhalt -->
@@ -34,7 +34,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:layout_marginTop="16dp"
-                android:contentDescription="Bild der Route" />
+                android:contentDescription="@string/mountain_image_desc" />
         </LinearLayout>
     </ScrollView>
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:rotation="90"
         android:layout_margin="16dp"
-        android:contentDescription="Zurück"
+        android:contentDescription="@string/zurueck"
         app:srcCompat="@android:drawable/arrow_down_float"
         android:tint="@android:color/white"
         android:layout_gravity="bottom|end" />

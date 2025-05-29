@@ -119,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void syncDataFromServer() {
+        new Handler(Looper.getMainLooper()).post(() ->
+                Toast.makeText(this, "Daten synchronisieren...", Toast.LENGTH_SHORT).show()
+        );
+
         new Thread(() -> {
             try {
                 URL url = new URL(DATA_URL);
@@ -143,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 downloadAllImages(jsonData);
 
                 new Handler(Looper.getMainLooper()).post(() -> {
-                    Toast.makeText(this, "Daten und Bilder synchronisiert", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Daten erfolgreich synchronisiert", Toast.LENGTH_SHORT).show();
                     loadDataFromLocalStorage();
                 });
 
