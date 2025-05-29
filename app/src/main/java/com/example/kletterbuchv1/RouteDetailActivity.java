@@ -2,8 +2,6 @@ package com.example.kletterbuchv1;
 
 import com.bumptech.glide.Glide;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -17,8 +15,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 
 public class RouteDetailActivity extends AppCompatActivity {
 

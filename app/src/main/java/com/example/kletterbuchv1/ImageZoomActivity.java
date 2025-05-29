@@ -2,24 +2,20 @@ package com.example.kletterbuchv1;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-import java.io.IOException;
-import java.io.InputStream;
 
 public class ImageZoomActivity extends AppCompatActivity {
 
@@ -54,7 +50,7 @@ public class ImageZoomActivity extends AppCompatActivity {
                 .load(imageUrl)
                 .into(new CustomTarget<Bitmap>() {
                     @Override
-                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                    public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
                         bitmap = resource;
                         imageView.setImageBitmap(bitmap);
                         imageView.post(() -> fitImageToView());

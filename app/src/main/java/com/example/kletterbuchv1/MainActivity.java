@@ -32,20 +32,17 @@ public class MainActivity extends AppCompatActivity {
     private static final String DATA_URL = "http://192.168.1.51:8080/data/data.json"; // ⚠️ Ersetze mit deinem lokalen Server!
     private static final String DATA_FILE_NAME = "data.json";
 
-    private ArrayList<String> mountainNames = new ArrayList<>();
-    private ArrayList<JSONObject> mountainObjects = new ArrayList<>();
+    private final ArrayList<String> mountainNames = new ArrayList<>();
+    private final ArrayList<JSONObject> mountainObjects = new ArrayList<>();
     private ArrayAdapter<String> adapter;
-
-    private ListView mountainListView;
-    private Button downloadButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mountainListView = findViewById(R.id.mountainListView);
-        downloadButton = findViewById(R.id.downloadButton);
+        ListView mountainListView = findViewById(R.id.mountainListView);
+        Button downloadButton = findViewById(R.id.downloadButton);
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setTitle("Kletterrouten App");
 
