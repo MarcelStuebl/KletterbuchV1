@@ -14,8 +14,16 @@
         android:titleTextColor="@android:color/white"
         app:layout_scrollFlags="scroll|enterAlways" />
 
+    <Button
+        android:id="@+id/downloadButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Daten herunterladen"/>
+
     <ListView
         android:id="@+id/mountainListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
 </LinearLayout>

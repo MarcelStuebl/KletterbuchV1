@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Toolbar -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
@@ -18,6 +19,7 @@
             android:title="@string/kletterapp"
             android:titleTextColor="@android:color/white" />
 
+        <!-- Liste der Routen -->
         <ListView
             android:id="@+id/routeListView"
             android:layout_width="match_parent"
@@ -25,7 +27,7 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <!-- FAB rechts unten -->
+    <!-- Zurück-Button (FAB) -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/backFab"
         android:layout_width="wrap_content"
@@ -36,5 +38,5 @@
         app:srcCompat="@android:drawable/arrow_down_float"
         android:tint="@android:color/white"
         android:layout_gravity="bottom|end" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

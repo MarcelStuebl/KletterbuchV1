@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -12,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,24 +47,24 @@ public class ImageZoomActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.zoomImageView);
 
-        // Bild aus Assets laden
-        String imageFileName = getIntent().getStringExtra("image");
-        try {
-            assert imageFileName != null;
-            try (InputStream is = getAssets().open(imageFileName)) {
-                bitmap = BitmapFactory.decodeStream(is);
-                imageView.setImageBitmap(bitmap);
-            }
-        } catch (IOException e) {
-            Log.e("RouteDetailActivity", "Fehler beim Laden des Bildes aus den Assets", e);
-            Toast.makeText(this, "Fehler beim Laden des Routenbildes", Toast.LENGTH_SHORT).show();
-        }
+        String imageUrl = getIntent().getStringExtra("image");
+
+        Glide.with(this)
+                .asBitmap()
+                .load(imageUrl)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                        bitmap = resource;
+                        imageView.setImageBitmap(bitmap);
+                        imageView.post(() -> fitImageToView());
+                    }
+
+                    @Override
+                    public void onLoadCleared(Drawable placeholder) {}
+                });
 
         imageView.setScaleType(ImageView.ScaleType.MATRIX);
-        imageView.setImageMatrix(matrix);
-
-        // Warten bis Layout fertig ist, um Bild an ImageView-Größe anzupassen
-        imageView.post(this::fitImageToView);
 
         // Touch-Listener für Drag & Zoom
         imageView.setOnTouchListener((View v, MotionEvent event) -> {

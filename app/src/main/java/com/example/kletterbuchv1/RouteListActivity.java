@@ -1,14 +1,17 @@
 package com.example.kletterbuchv1;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -24,6 +27,7 @@ public class RouteListActivity extends AppCompatActivity {
     ArrayList<JSONObject> routeObjects = new ArrayList<>();
     ListView routeListView;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,13 @@ public class RouteListActivity extends AppCompatActivity {
             MaterialToolbar toolbar = findViewById(R.id.topAppBar);
             toolbar.setTitle(mountainName);
 
+            // Lade Bild, falls vorhanden
+            if (mountain.has("image")) {
+                String imageUrl = mountain.getString("image");
+                Glide.with(this)
+                        .load(imageUrl);
+            }
+
             // Parse and add routes
             JSONArray routesArray = mountain.getJSONArray("routes");
             for (int i = 0; i < routesArray.length(); i++) {
@@ -50,7 +61,7 @@ public class RouteListActivity extends AppCompatActivity {
             }
 
         } catch (JSONException e) {
-            Log.e("RouteDetailActivity", "Fehler beim Parsen des JSON-Objekts", e);
+            Log.e("RouteListActivity", "Fehler beim Parsen des JSON-Objekts", e);
             Toast.makeText(this, "Fehler beim Laden der Route-Daten", Toast.LENGTH_SHORT).show();
         }
 

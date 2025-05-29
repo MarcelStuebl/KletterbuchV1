@@ -1,5 +1,6 @@
 package com.example.kletterbuchv1;
 
+import com.bumptech.glide.Glide;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,26 +39,31 @@ public class RouteDetailActivity extends AppCompatActivity {
             // Toolbar-Titel
             toolbar.setTitle(route.getString("name"));
 
-            // Bild aus Assets laden
-            String imageFileName = route.getString("image");
-            try (InputStream is = getAssets().open(imageFileName)) {
-                Bitmap bitmap = BitmapFactory.decodeStream(is);
-                imageView.setImageBitmap(bitmap);
+            // Bild vom Server laden (anstatt aus Assets)
+            String baseUrl = "http://192.168.1.51:8080/images/";
+            String imagePath = route.getString("image");
+
+// Falls imagePath schon mit "img/" beginnt, entferne das oder korrigiere hier:
+            if (imagePath.startsWith("img/")) {
+                imagePath = imagePath.substring(4); // entfernt "img/"
             }
+
+            String imageUrl = baseUrl + imagePath;
+
+            Glide.with(this)
+                    .load(imageUrl)
+                    .into(imageView);
 
             // Bildklick → ZoomActivity starten
             imageView.setOnClickListener(v -> {
                 Intent intent = new Intent(RouteDetailActivity.this, ImageZoomActivity.class);
-                intent.putExtra("image", imageFileName);
+                intent.putExtra("image", imageUrl);  // Übergib URL statt Dateiname
                 startActivity(intent);
             });
 
         } catch (JSONException e) {
             Log.e("RouteDetailActivity", "Fehler beim Parsen des JSON-Objekts", e);
             Toast.makeText(this, "Fehler beim Laden der Route-Daten", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            Log.e("RouteDetailActivity", "Fehler beim Laden des Bildes aus den Assets", e);
-            Toast.makeText(this, "Fehler beim Laden des Routenbildes", Toast.LENGTH_SHORT).show();
         }
 
         // Zurück-Button
