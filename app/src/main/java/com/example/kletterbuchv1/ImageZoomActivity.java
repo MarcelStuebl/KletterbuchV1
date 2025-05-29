@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,6 +46,7 @@ public class ImageZoomActivity extends AppCompatActivity {
 
         // Lokales Bild laden
         try {
+            assert imageName != null;
             File imageFile = new File(getFilesDir(), imageName);
             if (!imageFile.exists()) {
                 Toast.makeText(this, "Bild nicht gefunden", Toast.LENGTH_SHORT).show();
@@ -57,8 +59,8 @@ public class ImageZoomActivity extends AppCompatActivity {
             imageView.post(this::fitImageToView);
 
         } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Fehler beim Laden des Bildes", Toast.LENGTH_SHORT).show();
+            Log.e("ImageZoomActivity", "Fehler beim Laden des Bildes: " + imageName, e);
+            Toast.makeText(this, "Fehler beim Laden des Bildes: " + imageName, Toast.LENGTH_SHORT).show();
             finish();
         }
 
