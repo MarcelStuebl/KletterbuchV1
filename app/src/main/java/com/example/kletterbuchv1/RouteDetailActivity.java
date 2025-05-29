@@ -1,7 +1,8 @@
 package com.example.kletterbuchv1;
 
-import com.bumptech.glide.Glide;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -15,6 +16,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class RouteDetailActivity extends AppCompatActivity {
 
@@ -32,33 +36,33 @@ public class RouteDetailActivity extends AppCompatActivity {
         try {
             JSONObject route = new JSONObject(routeJson);
 
-            // Toolbar-Titel
+            // Toolbar-Titel setzen
             toolbar.setTitle(route.getString("name"));
 
-            // Bild vom Server laden (anstatt aus Assets)
-            String baseUrl = "http://192.168.1.51:8080/images/";
+            // Lokales Bild laden
             String imagePath = route.getString("image");
-
-// Falls imagePath schon mit "img/" beginnt, entferne das oder korrigiere hier:
             if (imagePath.startsWith("img/")) {
-                imagePath = imagePath.substring(4); // entfernt "img/"
+                imagePath = imagePath.substring(4);
             }
 
-            String imageUrl = baseUrl + imagePath;
+            File imageFile = new File(getFilesDir(), imagePath);
+            if (imageFile.exists()) {
+                Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(imageFile));
+                imageView.setImageBitmap(bitmap);
+            } else {
+                Toast.makeText(this, "Bild nicht gefunden: " + imagePath, Toast.LENGTH_SHORT).show();
+            }
 
-            Glide.with(this)
-                    .load(imageUrl)
-                    .into(imageView);
-
-            // Bildklick → ZoomActivity starten
+            // Klick auf das Bild → Zoom-Ansicht starten
+            String finalImagePath = imagePath;
             imageView.setOnClickListener(v -> {
                 Intent intent = new Intent(RouteDetailActivity.this, ImageZoomActivity.class);
-                intent.putExtra("image", imageUrl);  // Übergib URL statt Dateiname
+                intent.putExtra("image", finalImagePath);  // Nur Dateiname, nicht URL
                 startActivity(intent);
             });
 
-        } catch (JSONException e) {
-            Log.e("RouteDetailActivity", "Fehler beim Parsen des JSON-Objekts", e);
+        } catch (JSONException | IOException e) {
+            Log.e("RouteDetailActivity", "Fehler beim Verarbeiten der Route-Daten", e);
             Toast.makeText(this, "Fehler beim Laden der Route-Daten", Toast.LENGTH_SHORT).show();
         }
 
