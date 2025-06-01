@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String DATA_URL = "http://192.168.1.51:8080/data/data.json";
+    private static final String DATA_URL = "http://kletterapp.stuebl.eu:8080/data/data.json";
     private static final String DATA_FILE_NAME = "data.json";
 
     private final ArrayList<String> mountainNames = new ArrayList<>();
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
             if (imagePath.startsWith("img/")) {
                 imagePath = imagePath.substring(4);
             }
-            String imageUrl = "http://192.168.1.51:8080/images/" + imagePath;
+            String imageUrl = "http://kletterapp.stuebl.eu:8080/images/" + imagePath;
             URL url = new URL(imageUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.connect();
